@@ -8,7 +8,9 @@ small program which generet markdown table
 testing only on the ubuntu 19, on the window maybe problem with encoding
 
 ## useg
+```bash
 java -jar create-md-table.jar
+```
 if you use another jre version you may create shell script. exemple for open-JDK on the ubuntu:
 ```bash
 #! /bin/sh
