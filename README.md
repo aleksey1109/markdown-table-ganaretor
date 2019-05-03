@@ -15,7 +15,7 @@ if you use another jre version you may create shell script. exemple for open-JDK
 
 /usr/lib/jvm/java-11-openjdk-amd64/bin/java -jar create-md-table.jar
 ```
-##example of table
+## example of table
  ```
  |first  |second|
  |:----- |:-----|
