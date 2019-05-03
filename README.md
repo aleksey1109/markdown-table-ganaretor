@@ -21,6 +21,6 @@ if you use another jre version you may create shell script. exemple for open-JDK
  ```
  |first  |second|
  |:----- |:-----|
- |third  |fourth |
+ |third  |fourth|
 ```
 #### you can use the code at your discretion or make changes to it if you find errors or want to improve this project, I will be glad to any participation in this project and be ready to support it while I use this program or while it will be interesting to github community
