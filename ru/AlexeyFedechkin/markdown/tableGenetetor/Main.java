@@ -10,7 +10,7 @@ import java.awt.Toolkit;
 
 /**
  * a small program that generates a markdown table
- * @author Alexey Fedechkin https://vk.com/id235231062
+ * @author Alexey Fedechkin https://github.com/aleksey1109
  * @version 1.0
  */
 
@@ -26,20 +26,31 @@ class Main {
      private static int                  realCellWidth;
      private static final StringBuilder  markdownTable = new StringBuilder();
     /**
-     * @param args never used
+     * @param args dimension of array. columns x lines
      */
     public static void main(String[] args) throws IOException {
-        System.out.println("Введите размерность таблицы, сначала количество столбцов, затем количество строк через пробел");
-        var dimension = scanner.nextLine();
-        String[] dimensions = dimension.split(" ");
-        try {
-            columns = Byte.parseByte(dimensions[0]);
-            lines = Byte.parseByte(dimensions[1]);
-            int cellCount = columns * lines;
-            cellWidth = WIDTH / columns;
-        } catch (NumberFormatException e) {
-            System.err.println("Не корректный данные");
-            Main.main(null);
+        if (args.length == 0){
+            System.out.println("Введите размерность таблицы, сначала количество столбцов, затем количество строк через пробел");
+            var dimension = scanner.nextLine();
+            String[] dimensions = dimension.split(" ");
+            try {
+                columns = Byte.parseByte(dimensions[0]);
+                lines = Byte.parseByte(dimensions[1]);
+                cellWidth = WIDTH / columns;
+            } catch (NumberFormatException e) {
+                System.err.println("Не корректный данные");
+                Main.main(null);
+            }
+        } else {
+            try {
+                columns = Byte.parseByte(args[0]);
+                lines = Byte.parseByte(args[1]);
+                cellWidth = WIDTH / columns;
+            } catch (NumberFormatException e) {
+                System.err.println("Не корректный данные");
+                Main.main(null);
+            }
+            System.out.println("Используется таблица размерности: "+ columns + "x" + lines);
         }
         table = new String[columns][lines];
         System.out.println("Выберите способ ввода." +
@@ -85,7 +96,7 @@ class Main {
                 markdownTable.append(" |");
                 markdownTable.append(table[j][i]);
                 if (table[j][i].length() < realCellWidth){
-                    markdownTable.append(genChar(realCellWidth - table[j][i].length(),' '));
+                    markdownTable.append(generateString(realCellWidth - table[j][i].length(),' '));
                 }
             }
             markdownTable.append("|");
@@ -95,7 +106,7 @@ class Main {
                     markdownTable.append(" ");
                     markdownTable.append("|");
                     markdownTable.append(":");
-                    markdownTable.append(genChar(realCellWidth -1,'-'));
+                    markdownTable.append(generateString(realCellWidth -1,'-'));
                 }
                 markdownTable.append("|");
                 markdownTable.append("\n");
@@ -119,7 +130,7 @@ class Main {
                     e.printStackTrace();
                 }
                 table[j][i] = input;
-                print(table);
+                printArray(table);
             }
         }
     }
@@ -141,7 +152,7 @@ class Main {
             System.out.println("Введите текст ячейки");
             String input = scanner.nextLine();
             table[Integer.parseInt(c[0])-1][Integer.parseInt(c[1])-1] = input;
-            print(table);
+            printArray(table);
         }
     }
 
@@ -164,12 +175,12 @@ class Main {
     }
 
     /**
-     * print two-dimensional array
-     * @param table two-dimensional array which is needed to print
+     * printArray two-dimensional array
+     * @param table two-dimensional array which is needed to printArray
      * @since 1.0
      */
-    private static void print(String[][] table) {
-        if (containNull(table)){
+    private static void printArray(String[][] table) {
+        if (isContainNull(table)){
             for (int i = 0; i < lines; i++) {
                 for (int j = 0; j < columns; j++) {
                     System.out.print(table[j][i]);
@@ -185,7 +196,7 @@ class Main {
      * @param table two-dimension array
      * @return true if two-dimension array contain null
      */
-    private static boolean containNull(String[][] table){
+    private static boolean isContainNull(String[][] table){
         for (String[] arr: table){
             for (String str : arr){
                 if (str == null){
@@ -203,7 +214,7 @@ class Main {
      * @return generated string
      * @since 1.0
      */
-    private static String genChar(int countSpaces, char ch){
+    private static String generateString(int countSpaces, char ch){
         return String.valueOf(ch).repeat(Math.max(0, countSpaces));
     }
 }

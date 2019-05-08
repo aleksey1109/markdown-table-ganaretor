@@ -1,17 +1,17 @@
-# markdown-table-ganaretor
-small program which generet markdown table
+# markdown-table-generator
+small program which gendered markdown table
 
-## reguire
+## require
 1. java 11 (testing only for this version maybe work with another version of jre)
 2. console
 
 testing only on the ubuntu 19, on the window maybe problem with encoding
 
-## useg
+## usage
 ```bash
 java -jar create-md-table.jar
 ```
-if you use another jre version you may create shell script. exemple for open-JDK on the ubuntu:
+if you use another jre version you may create shell script. example for open-JDK on the ubuntu:
 ```bash
 #! /bin/sh
 
